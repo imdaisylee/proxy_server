@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
 from flask_talisman import Talisman
 import requests
+import os
 
 app2 = Flask(__name__)
 CORS(app2, resources={r"/*": {"origins": "*"}})  # Allow requests from all origins
@@ -32,4 +33,5 @@ def proxy():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app2.run(debug=True, port=8000)  # Running on port 8000
+    port = int(os.environ.get('PORT', 8000))
+    app2.run(debug=True, host='0.0.0.0', port=port)
