@@ -2,3 +2,4 @@ flask
 flask-cors
 flask-talisman
 requests
+gunicorn
